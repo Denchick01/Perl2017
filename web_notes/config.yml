@@ -1,0 +1,39 @@
+appname: "web_notes"
+
+layout: "main"
+
+charset: "UTF-8"
+
+session: 'Cookie'
+
+template: "template_toolkit"
+engines:
+    template:
+        template_toolkit:
+            start_tag: '<%'
+            end_tag:   '%>'
+    session:
+        Cookie:
+            secret_key: '7t3HfkbIdFcFzESBJXZ!cxXkZLX8DU6fbHDx7tmr'
+            default_duration: 604800
+            with_request_address: 1
+
+
+plugins:
+    DBIC:
+        default:
+            dsn: 'DBI:mysql:database=Web_notes'
+            schema_class: 'Local::Schema'
+            user: 'denis_t'
+            pass: '12345'
+            options:
+                RaiseError: 1
+                PrintError: 1
+                mysql_enable_utf8: 1
+ 
+sys_salt: "nNNF84IRytOjXZKvURYod"
+upload_dir: "note_files"
+salt_length: 12
+#Максимальный размер текста, см размер столбца note_text в таблице notes
+max_text_size: 500 
+

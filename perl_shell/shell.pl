@@ -259,11 +259,14 @@ sub shell_ps {
     
     opendir my $dh, "$proc_dir" or return error_cmd ["ps: Can't opendir $proc_dir: $!", 2];
 
+
+    printf "%-5s\t%-5s\t%-5s\t%-5s\n", "Pid", "PPid", "TTY", "CMD"; 
+
     while (my $file_name = readdir $dh) {
         my $p_dir = "$proc_dir/$file_name";
         next unless (-d $p_dir && $file_name =~ m/^\d+$/o);
         my $f_cmd_line = "$p_dir/comm";  
-        my $f_stat = "$p_dir/status";
+        my $f_stat = "$p_dir/stat";
 
         open my $fd, "<", "$f_cmd_line" or return error_cmd ["ps: Can't open file $f_cmd_line: $!", 2];
         
@@ -273,19 +276,16 @@ sub shell_ps {
 
         open $fd, "<", "$f_stat" or return error_cmd ["ps: Can't open file $f_stat: $!", 2];
 
-        my $proc_pid;
-        my $proc_ppid;
-        for (<$fd>) {
-            if (m/^Pid:\s+(\d+)/o) {
-                $proc_pid = $1;
-            }
-            elsif (m/^PPid:\s+(\d+)/o) {
-                $proc_ppid = $1;
-            }
-        }
+
+        my ($proc_pid, $proc_ppid, $proc_tty) =  (split /\s+/, <$fd>)[0, 3, 6];
+
+        $proc_tty &= 0xff;
+
+        $proc_tty = "?" if not $proc_tty;
+
         close $fd;
         
-        print "$proc_pid  $proc_ppid $cmd_name\n";
+        printf "%-5s\t%-5s\t%-5s\t%-5s\n", $proc_pid, $proc_ppid, $proc_tty, $cmd_name;
     }
 
     close $dh;

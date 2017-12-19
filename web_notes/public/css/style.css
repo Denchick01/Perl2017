@@ -1,0 +1,109 @@
+body {
+margin: 0;
+margin-bottom: 25px;
+padding: 0;
+background-color: #ddd;
+background-image: url("/images/page-bg.jpg");
+background-repeat: no-repeat;
+background-position: top left;
+
+font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
+font-size: 13px;
+color: #333;
+}
+
+h1 {
+font-size: 28px;
+color: #000;
+}
+
+a  {color: #03c}
+a:hover {
+background-color: #03c;
+color: white;
+text-decoration: none;
+}
+
+h1, h2, h3, h4, h5 {
+font-family: sans-serif;
+margin: 1.2em 0 0.6em 0;
+}
+
+p {
+line-height: 1.5em;
+margin: 1.6em 0;
+}
+
+code, .filepath, .app-info {
+    font-family: 'Andale Mono', Monaco, 'Liberation Mono', 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', monospace;
+}
+
+#content {
+background-color: white;
+border: 1px solid #aaa;
+padding: 25px;
+width: 60%;
+text-align: left; 
+margin: 10px auto;
+height: auto;
+min-height: 600px;
+}
+
+#header{
+height: 60px;
+background-color:  #E6E6FA;
+border-bottom: 1px solid #aaa;
+}
+
+#sidebar {
+float: right;
+border: 1px solid #aaa;
+padding: 25px;
+width: 10%;
+background-color:  #E6E6FA;
+margin: 10px auto;
+}
+
+
+#footer {
+clear: both;
+padding-top: 2em;
+text-align: center;
+padding-right: 160px;
+font-family: sans-serif;
+font-size: 10px;
+border-top: 1px solid #aaa;
+position: relative;
+margin-top: 0; 
+height: 40px;
+}
+
+#logo {
+float: left;
+margin: 0 16px 0 10px;
+}
+
+#inout {
+margin-top: 20px;
+margin-right: 20px;
+float: right;
+font-family: sans-serif;
+font-size: 20px;
+}
+
+#login, #create_account {
+position: absolute;
+top: 50%;
+left: 50%;
+margin: -100px 0 0 -200px;
+padding: 25px;
+width: 300px;
+z-index: 9999;
+background-color: white;
+border: 1px solid #aaa;    
+}
+
+
+#user_text  {
+width: 400px;
+}

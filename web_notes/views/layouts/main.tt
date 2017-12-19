@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="<% settings.charset %>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title><% title %></title>
+  <link rel="stylesheet" href="<% request.uri_base %>/css/style.css">
+
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">/* <![CDATA[ */
+    !window.jQuery && document.write('<script type="text/javascript" src="<% request.uri_base %>/javascripts/jquery.js"><\/script>')
+/* ]]> */</script>
+
+</head>
+<body>
+    <div id="layout">
+         <div id="header">
+             <a href="/"><img src="/images/logo.jpg" alt="Home" height="60" id="logo"></a>
+             <div id="inout">
+                 <a href="/login">login</a>
+                 <a href="/logout">logout</a>
+             </div>
+        </div>
+        <div id="sidebar">
+            <ul>
+                <li><a href="/">Create note</a></li>
+                <li><a href="/notes?check=my">My notes</a></li>
+                <li><a href="/notes?check=all">All notes</a></li>
+            </ul>
+        </div>
+        <div id="content">
+            <% content %>
+        </div>
+        <div id="footer">
+            Web Notes
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<div>
+    <h2><% whose %></h2>
+
+    <% IF notes %><ol><%FOR n IN notes %><li><p>Creator: <% n.creator %>&nbspCreate time: <% n.create_time %></p><p><a href="note/<% n.id %>"><% n.title %></a></p></li><% END %></ol><% END %>
+</div>

@@ -12,15 +12,19 @@ GetOptions ("u"=> \$udp_mode_v,
             "<>" => \&take_addr);
 
 
-my $msg = join "", <>;
+die "no host! to connect" if not defined $host;
+die "no port! to connect" if not defined $port;
 
 my $addr = gethostbyname $host;
 my $sa = sockaddr_in($port, $addr);
 
 if (not $udp_mode_v) {
-    socket my $s, AF_INET, SOCK_STREAM, IPPROTO_TCP;
+    socket my $s, AF_INET, SOCK_STREAM, IPPROTO_TCP or die "Can't create socket! $!";
 
-    connect($s, $sa);
+    connect($s, $sa) or die "Can't connect to $host:$port! $!";
+
+    my $msg = join "", <>;
+
     syswrite $s, $msg or die "write failed: $!";
 
     while (1) {
@@ -34,31 +38,33 @@ if (not $udp_mode_v) {
         else { 
             die "read failed: $!" 
         }
-    } 
+   } 
 
     close $s;
 }
 else {
-    socket my $s, AF_INET, SOCK_DGRAM, IPPROTO_UDP;
+    socket my $s, AF_INET, SOCK_DGRAM, IPPROTO_UDP or die "Can't create socket! $!";
+
+    my $msg = join "", <>;
 
     send($s, $msg, 0, $sa) or die "send: $!";
-
+    
     close $s;
 }
 
 
 
 sub take_addr {
-    my $addr = shift @_;
+    my $connect_str = shift @_;
     state $count++;
 
     $count < 3 or die "More arguments!"; 
 
     if ($count == 1) {
-        $host = $addr;
+        $host = $connect_str;
     }
     else {
-        $port = $addr;
+        $port = $connect_str;
     }
     
 }

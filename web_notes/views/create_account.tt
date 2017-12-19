@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="<% settings.charset %>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title><% title %></title>
+  <link rel="stylesheet" href="<% request.uri_base %>/css/style.css">
+
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">/* <![CDATA[ */
+    !window.jQuery && document.write('<script type="text/javascript" src="<% request.uri_base %>/javascripts/jquery.js"><\/script>')
+/* ]]> */</script>
+</head>
+<body>
+    <div id="create_account">
+        <h2>Account create</h2>
+        <% IF err %><ol><%FOR e IN err %><li>Error: <% e %></li><% END %></ol><% END %>
+
+        <form method="post">
+            <p><input maxlength=15 type="text" name="username" placeholder="username"/></p>
+            <p><input maxlength=15 type="text" name="login" placeholder="login"/></p>
+            <p><input maxlength=20 type="password" name="new_password_1" placeholder="new password" /></p>
+            <p><input maxlength=20 type="password" name="new_password_2" placeholder="repeat new password" /></p>
+            <p><input type="submit" value="Create" /></p>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+

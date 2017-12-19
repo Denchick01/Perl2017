@@ -1,0 +1,16 @@
+<div>
+    <h2>Create note</h2>
+    <% IF err %><ol><%FOR e IN err %><li>Error: <% e %></li><% END %></ol><% END %>
+    <form enctype="multipart/form-data" method="post">
+        <h3>Title:</h3>
+        <p><input maxlength=255 type="title" name="title" value="<% user_title %>"/></p>
+        <h3>Text:</h3>
+        <p><textarea maxlength=500 name="text" rows="10" cols="50"><% user_text %></textarea></p>       
+        <h3>Users:</h3>
+        <p><textarea maxlength=255 name="users" ><% user_users %></textarea></p>
+        <input type="hidden" name="csrf" value="<% csrf_token %>">
+        <p><input type="file" name="note_files"></p> 
+        <p><input type="submit" value="Create" /></p>
+    </form>
+</div>
+

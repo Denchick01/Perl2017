@@ -1,0 +1,9 @@
+<div>
+    <h2><% note_title %></h2>
+    <p>Create time: <% note_create_time %></p>
+    <p>Creator: <% note_creator_login %>&lt<% note_creator_name %>&gt</p>
+    <p><ol><%FOR t IN note_text %><li><% t %></li><% END %></ol></p>
+    <% IF note_files %><h3>Files:</h3><ol><%FOR f IN note_files %><li><a href="/download/<% f.file_id %>"><% f.file_name %></a></li><% END %></ol><% END %>
+    <% IF err %><ol><%FOR e IN err %><li>Error: <% e %></li><% END %></ol><% END %>
+</div>
+

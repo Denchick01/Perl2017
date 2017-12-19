@@ -1,0 +1,5 @@
+---
+dsn: DBI:mysql:database=Social_Network
+user: denis_t 
+password: 12345
+mch_address: localhost:11211
